@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "37138963199",
+    "project_id": "plantsfirebase1",
+    "storage_bucket": "plantsfirebase1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37138963199:android:bcfd83ed033893d0910aca",
+        "android_client_info": {
+          "package_name": "com.midterm.plantsfirebase1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37138963199-bcidc405jrql76v6v5qnle8nufi38312.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.midterm.plantsfirebase1",
+            "certificate_hash": "d1ba2dbc09be5a5c4842b1a4d1abb8cf43bd9bf3"
+          }
+        },
+        {
+          "client_id": "37138963199-ps3uu4qbrv7qb0sufbufosnaaln2jea0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGe_F2A-EfKij31at86pYMd03SiyruGKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37138963199-ps3uu4qbrv7qb0sufbufosnaaln2jea0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
