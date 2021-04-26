@@ -17,10 +17,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.midterm.plantsfirebase1.Model.User;
 
-public class SignIn extends AppCompatActivity {
+public class  SignIn extends AppCompatActivity {
 
     EditText edtPhone, edtPassword;
     Button btnSignIn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
