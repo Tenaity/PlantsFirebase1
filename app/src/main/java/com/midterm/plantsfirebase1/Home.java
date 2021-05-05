@@ -1,5 +1,6 @@
 package com.midterm.plantsfirebase1;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -41,7 +42,6 @@ public class Home extends AppCompatActivity {
 
     TextView mtvNameUser;
     private RecyclerView mRvCategory;
-//    private CategoryAdapter mCategoryAdapter;
     FirebaseRecyclerAdapter<Category,MenuViewHolder> adapter;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -104,7 +104,9 @@ public class Home extends AppCompatActivity {
                 holder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Home.this, " "+clickItem.getName(), Toast.LENGTH_SHORT).show();
+                        Intent plantList = new Intent(Home.this,PlantList.class);
+                        plantList.putExtra("CategoryId",adapter.getRef(position).getKey());
+                        startActivity(plantList);
                     }
                 });
             }
