@@ -13,13 +13,15 @@
 
 
         <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.PlantsFirebase1.NoActionBar" />
+        <activity
             android:name=".SignUp"
-            android:label="@string/title_activity_sign_up">
-
-        </activity>
+            android:label="@string/title_activity_sign_up" />
         <activity
             android:name=".SignIn"
-            android:label="@string/title_activity_sign_in"></activity>
+            android:label="@string/title_activity_sign_in" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
