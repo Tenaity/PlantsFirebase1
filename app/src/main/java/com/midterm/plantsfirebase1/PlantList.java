@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,7 +40,7 @@ public class PlantList extends AppCompatActivity {
         if(getIntent() != null){
             categoryId = getIntent().getStringExtra("CategoryId");
         }
-//        if(!categoryId.isEmpty() && categoryId != null){
+        if(!categoryId.isEmpty() && categoryId != null) {
 
             FirebaseRecyclerOptions<Plant> option =
                     new FirebaseRecyclerOptions.Builder<Plant>()
@@ -57,7 +58,10 @@ public class PlantList extends AppCompatActivity {
                     holder.setItemClickListener(new ItemClickListener() {
                         @Override
                         public void onClick(View view, int position, boolean isLongClick) {
-                            Toast.makeText(PlantList.this, ""+itemClickPlant.getName(), Toast.LENGTH_SHORT).show();
+                            //Start new Activity
+                            Intent plantDetail = new Intent(PlantList.this, PlantDetail.class);
+                            plantDetail.putExtra("PlantId", adapterPlant.getRef(position).getKey());
+                            startActivity(plantDetail);
                         }
                     });
                 }
@@ -65,12 +69,13 @@ public class PlantList extends AppCompatActivity {
                 @NonNull
                 @Override
                 public PlantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.plant_item,parent,false);
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.plant_item, parent, false);
                     return new PlantViewHolder(view);
                 }
             };
 
             mRvPlant.setAdapter(adapterPlant);
+        }
     }
     @Override
     public void onStart() {

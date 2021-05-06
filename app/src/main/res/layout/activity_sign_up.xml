@@ -4,21 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/box_inset_layout_padding"
+    android:background="@drawable/background2"
     tools:context=".SignUp"
     tools:deviceIds="wear">
 
     <EditText
-        android:id="@+id/edt_nameSignup"
+        android:id="@+id/edt_passwordSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPersonName"
-        android:hint="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/edt_phoneSignup"
+        app:layout_constraintTop_toBottomOf="@+id/edt_phoneSignup" />
 
     <EditText
         android:id="@+id/edt_phoneSignup"
@@ -26,30 +25,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Phone number"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/edt_nameSignup"
         app:layout_constraintTop_toBottomOf="@+id/edt_nameSignup" />
 
-    <EditText
-        android:id="@+id/edt_passwordSignup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Password"
-        app:layout_constraintStart_toStartOf="@+id/edt_phoneSignup"
-        app:layout_constraintTop_toBottomOf="@+id/edt_phoneSignup" />
-
     <Button
         android:id="@+id/btn_signUp"
-        android:layout_width="180dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="44dp"
-        android:backgroundTint="@color/mainthemeprimary"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/btnMain"
         android:hint="Đăng ký"
         app:layout_constraintStart_toStartOf="@+id/edt_passwordSignup"
         app:layout_constraintTop_toBottomOf="@+id/edt_passwordSignup" />
+
+    <EditText
+        android:id="@+id/edt_nameSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="340dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="@dimen/box_inset_layout_padding"
-    tools:context=".SignIn"
     android:layout_gravity="center"
+    android:background="@drawable/background2"
+    tools:context=".SignIn"
     tools:deviceIds="wear">
 
 
@@ -15,20 +14,19 @@
         android:id="@+id/edt_phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="233dp"
+        android:layout_marginBottom="322dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="phone number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edt_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
@@ -37,12 +35,13 @@
 
     <Button
         android:id="@+id/btn_signIn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="44dp"
-        android:backgroundTint="@color/mainthemeprimary"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/btnMain"
         android:text="Đăng nhập"
         app:layout_constraintEnd_toEndOf="@+id/edt_password"
+        app:layout_constraintStart_toStartOf="@+id/edt_password"
         app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

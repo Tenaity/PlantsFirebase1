@@ -10,4 +10,5 @@
     <color name="maintheme">#41C300</color>
     <color name="mainthemeprimary">#008b00</color>
     <color name="teal_50_700">#00BFA5</color>
+    <color name="btnMain">#00796B</color>
 </resources>
