@@ -66,6 +66,8 @@ dependencies {
     compileOnly 'com.google.android.wearable:wearable:2.6.0'
 
     compile 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

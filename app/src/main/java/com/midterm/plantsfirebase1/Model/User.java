@@ -3,13 +3,13 @@ package com.midterm.plantsfirebase1.Model;
 public class User {
     private String name;
     private String Password;
-
+    private String phone;
     public User() {
     }
 
     public User(String name, String password) {
         this.name = name;
-        Password = password;
+        this.Password = password;
     }
 
     public String getName() {
@@ -25,6 +25,10 @@ public class User {
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.Password = password;
+    }
+    public String getPhone(){return phone;}
+    public void setPhone(String phone){
+        this.phone = phone;
     }
 }
