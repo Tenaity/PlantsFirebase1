@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantsFirebase1"
         tools:replace="android:theme">
-        <activity android:name=".Cart"/>
+        <activity android:name=".OrderStatus"></activity>
+        <activity android:name=".Cart" />
         <activity android:name=".PlantDetail" />
         <activity android:name=".PlantList" />
         <activity

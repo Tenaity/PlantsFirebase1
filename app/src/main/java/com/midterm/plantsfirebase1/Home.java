@@ -1,8 +1,12 @@
 package com.midterm.plantsfirebase1;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,10 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.midterm.plantsfirebase1.Commom.Commom;
 import com.midterm.plantsfirebase1.Interface.ItemClickListener;
 import com.midterm.plantsfirebase1.Model.Category;
+import com.midterm.plantsfirebase1.Model.Order;
 import com.midterm.plantsfirebase1.ViewHolder.MenuViewHolder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -36,7 +42,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -62,24 +68,17 @@ public class Home extends AppCompatActivity {
                 startActivity(cartIntent);
             }
         });
+
+        // Navigation Drawer
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(drawerToggle);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        drawerToggle.syncState();
 
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-//                .setDrawerLayout(drawer)
-//                .build();
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
 
 
         //Set name for user
@@ -119,7 +118,6 @@ public class Home extends AppCompatActivity {
             }
         };
 
-        //mCategoryAdapter = new CategoryAdapter(options);
         mRvCategory.setAdapter(adapter);
 
     }
@@ -137,21 +135,6 @@ public class Home extends AppCompatActivity {
     }
 
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.home, menu);
-//        return true;
-//    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        drawerToggle.syncState();
-    }
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -161,7 +144,6 @@ public class Home extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -170,26 +152,49 @@ public class Home extends AppCompatActivity {
         if(drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        switch (item.getItemId()) {
-            case R.id.nav_home:
-                Toast.makeText(this, "Search button selected", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.nav_gallery:
-                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.nav_slideshow:
-                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
-                return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.recyler_menu);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
 
+        if(id == R.id.nav_home){
+
+        }else if(id == R.id.nav_cart){
+            Intent cartIntent = new Intent(Home.this,Cart.class);
+            startActivity(cartIntent);
+        }else if(id == R.id.nav_order){
+            Intent orderIntent = new Intent(Home.this,OrderStatus.class);
+            startActivity(orderIntent);
+        }else if(id == R.id.nav_logout){
+            Intent logOutIntent = new Intent(Home.this,SignIn.class);
+            logOutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK  );
+            startActivity(logOutIntent);
+        }
+
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    public boolean onOptionItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.action_settings){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
 }
