@@ -44,7 +44,7 @@ public class PlantList extends AppCompatActivity {
 
             FirebaseRecyclerOptions<Plant> option =
                     new FirebaseRecyclerOptions.Builder<Plant>()
-                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Plant").orderByChild("menuId").equalTo(categoryId), Plant.class)
+                            .setQuery(FirebaseDatabase.getInstance().getReference().child("Plant").orderByChild("categoryId").equalTo(categoryId), Plant.class)
                             .build();
 
             adapterPlant = new FirebaseRecyclerAdapter<Plant, PlantViewHolder>(option) {

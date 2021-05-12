@@ -2,14 +2,14 @@ package com.midterm.plantsfirebase1.Model;
 
 public class User {
     private String name;
-    private String Password;
+    private String password;
     private String phone;
     public User() {
     }
 
     public User(String name, String password) {
         this.name = name;
-        this.Password = password;
+        this.password = password;
     }
 
     public String getName() {
@@ -21,11 +21,11 @@ public class User {
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        this.Password = password;
+        this.password = password;
     }
     public String getPhone(){return phone;}
     public void setPhone(String phone){
