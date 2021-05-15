@@ -122,7 +122,7 @@ public class Cart extends AppCompatActivity {
         for(Order order:cart)
             total += (Integer.parseInt(order.getPrice()))*(Integer.parseInt(order.getQuantity()));
 
-        Locale locale = new Locale("en","US");
+        Locale locale = new Locale("vi","VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
         mTvTotal.setText(fmt.format(total));

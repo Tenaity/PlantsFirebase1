@@ -2,6 +2,7 @@ package com.midterm.plantsfirebase1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,7 +35,7 @@ public class PlantList extends AppCompatActivity {
 
 
         mRvPlant = (RecyclerView)findViewById(R.id.recyler_plants);
-        mRvPlant.setLayoutManager(new LinearLayoutManager(this));
+        mRvPlant.setLayoutManager(new GridLayoutManager(this,2));
 
         //Get intent here
         if(getIntent() != null){

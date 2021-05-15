@@ -25,8 +25,8 @@ import java.util.Locale;
 
 class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    public TextView mTvCartNameItem, mTvCartPriceItem;
-    public ImageView mIvCartImageItem;
+    public TextView mTvCartNameItem, mTvCartPriceItem,mTvCartCountItem;
+
     private ItemClickListener itemClickListener;
 
     public CartViewHolder(@NonNull View itemView) {
@@ -34,7 +34,7 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 
         mTvCartNameItem = itemView.findViewById(R.id.tv_cartNameItem);
         mTvCartPriceItem = itemView.findViewById(R.id.tv_cartPriceItem);
-        mIvCartImageItem = itemView.findViewById(R.id.iv_cartImageItem);
+        mTvCartCountItem = itemView.findViewById(R.id.tv_cartCountItem);
 
 
     }
@@ -66,11 +66,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRound(""+listData.get(position).getQuantity(), Color.RED);
-        holder.mIvCartImageItem.setImageDrawable(drawable);
+//        TextDrawable drawable = TextDrawable.builder()
+//                .buildRound(""+listData.get(position).getQuantity(), Color.RED);
+        holder.mTvCartCountItem.setText(listData.get(position).getQuantity());
 
-        Locale locale = new Locale("en","US");
+        Locale locale = new Locale("vi","VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         int price = (Integer.parseInt(listData.get(position).getPrice()))*(Integer.parseInt(listData.get(position).getQuantity()));
         holder.mTvCartPriceItem.setText(fmt.format(price));

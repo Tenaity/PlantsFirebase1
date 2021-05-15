@@ -13,12 +13,12 @@
         android:layout_height="match_parent"/>
 
     <androidx.cardview.widget.CardView
-        android:backgroundTint="@color/btnMain"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
         <RelativeLayout
+            android:background="@drawable/gradient_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
