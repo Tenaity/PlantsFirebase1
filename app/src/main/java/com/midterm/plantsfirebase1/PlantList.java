@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
+import com.midterm.plantsfirebase1.Database.Database;
 import com.midterm.plantsfirebase1.Interface.ItemClickListener;
 import com.midterm.plantsfirebase1.Model.Plant;
 import com.midterm.plantsfirebase1.ViewHolder.PlantViewHolder;
@@ -27,12 +28,15 @@ public class PlantList extends AppCompatActivity {
     FirebaseRecyclerAdapter<Plant,PlantViewHolder> adapterPlant;
     String categoryId = "";
 
+    //Add Favorites
+    Database localDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_list);
 
+        localDB = new Database(this);
 
         mRvPlant = (RecyclerView)findViewById(R.id.recyler_plants);
         mRvPlant.setLayoutManager(new GridLayoutManager(this,2));
@@ -54,6 +58,28 @@ public class PlantList extends AppCompatActivity {
                     holder.tv_NamePlant.setText(model.getName());
                     holder.tv_PricePlant.setText(model.getPrice());
                     Glide.with(holder.imagePlant).load(model.getImage()).into(holder.imagePlant);
+
+                    //add Favorites
+                    if (localDB.isToFavorites(adapterPlant.getRef(position).getKey())){
+                        holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_24);
+                    }
+                    // click to add favorites
+
+                    holder.imageFav.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!localDB.isToFavorites(adapterPlant.getRef(position).getKey())){
+                                localDB.addToFavorites(adapterPlant.getRef(position).getKey());
+                                holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_24);
+                                Toast.makeText(PlantList.this,"" + model.getName() + " was added to Favorites",Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                localDB.delToFavorites(adapterPlant.getRef(position).getKey());
+                                holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                                Toast.makeText(PlantList.this,"" + model.getName() + " was removed from Favorites",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
 
                     final Plant itemClickPlant = model;
                     holder.setItemClickListener(new ItemClickListener() {
