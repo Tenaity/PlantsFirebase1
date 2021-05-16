@@ -17,35 +17,42 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.midterm.plantsfirebase1.Commom.Commom;
 import com.midterm.plantsfirebase1.Database.Database;
 import com.midterm.plantsfirebase1.Interface.ItemClickListener;
+import com.midterm.plantsfirebase1.Model.Favorites;
 import com.midterm.plantsfirebase1.Model.Plant;
 import com.midterm.plantsfirebase1.ViewHolder.PlantViewHolder;
 
 public class PlantList extends AppCompatActivity {
     RecyclerView mRvPlant;
-    FirebaseRecyclerAdapter<Plant,PlantViewHolder> adapterPlant;
+    FirebaseRecyclerAdapter<Plant, PlantViewHolder> adapterPlant;
     String categoryId = "";
+    FirebaseDatabase database;
+    DatabaseReference favorite;
 
-    //Add Favorites
-    Database localDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_list);
 
-        localDB = new Database(this);
+        database = FirebaseDatabase.getInstance();
+        favorite = database.getReference("Favorites");
 
-        mRvPlant = (RecyclerView)findViewById(R.id.recyler_plants);
-        mRvPlant.setLayoutManager(new GridLayoutManager(this,2));
+        mRvPlant = (RecyclerView) findViewById(R.id.recyler_plants);
+        mRvPlant.setLayoutManager(new GridLayoutManager(this, 2));
 
         //Get intent here
-        if(getIntent() != null){
+        if (getIntent() != null) {
             categoryId = getIntent().getStringExtra("CategoryId");
         }
-        if(!categoryId.isEmpty() && categoryId != null) {
+        if (!categoryId.isEmpty() && categoryId != null) {
 
             FirebaseRecyclerOptions<Plant> option =
                     new FirebaseRecyclerOptions.Builder<Plant>()
@@ -60,24 +67,53 @@ public class PlantList extends AppCompatActivity {
                     Glide.with(holder.imagePlant).load(model.getImage()).into(holder.imagePlant);
 
                     //add Favorites
-                    if (localDB.isToFavorites(adapterPlant.getRef(position).getKey())){
-                        holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_24);
-                    }
+                    String key = Commom.currentUser.getPhone() + adapterPlant.getRef(position).getKey();
+                    favorite.child(key).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+//                                Toast.makeText(PlantList.this,"Zo roi ne ma oiii",Toast.LENGTH_LONG).show();
+                                holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_24);
+
+                            } else {
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                     // click to add favorites
 
                     holder.imageFav.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (!localDB.isToFavorites(adapterPlant.getRef(position).getKey())){
-                                localDB.addToFavorites(adapterPlant.getRef(position).getKey());
-                                holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_24);
-                                Toast.makeText(PlantList.this,"" + model.getName() + " was added to Favorites",Toast.LENGTH_LONG).show();
-                            }
-                            else{
-                                localDB.delToFavorites(adapterPlant.getRef(position).getKey());
-                                holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_border_24);
-                                Toast.makeText(PlantList.this,"" + model.getName() + " was removed from Favorites",Toast.LENGTH_LONG).show();
-                            }
+                            String key = Commom.currentUser.getPhone() + adapterPlant.getRef(position).getKey();
+
+                            favorite.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (!snapshot.exists()) {
+                                        Favorites fav = new Favorites(Commom.currentUser.getPhone(), adapterPlant.getRef(position).getKey());
+                                        favorite.child(key).setValue(fav);
+                                        holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_24);
+//                                        Toast.makeText(PlantList.this, "" + model.getName() + " was added to Favorites", Toast.LENGTH_LONG).show();
+
+                                    } else {
+                                        favorite.child(key).removeValue();
+                                        holder.imageFav.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                                        //Toast.makeText(PlantList.this, "" + model.getName() + " was removed from Favorites", Toast.LENGTH_LONG).show();
+
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
                     });
 
@@ -104,6 +140,7 @@ public class PlantList extends AppCompatActivity {
             mRvPlant.setAdapter(adapterPlant);
         }
     }
+
     @Override
     public void onStart() {
         super.onStart();
