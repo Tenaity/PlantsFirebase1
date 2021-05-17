@@ -18,7 +18,7 @@ import com.midterm.plantsfirebase1.Model.User;
 
 public class SignUp extends AppCompatActivity {
 
-    EditText edtPhone,edtName,edtPassword;
+    EditText edtPhone,edtName,edtPassword,edtSecureCode;
     Button btnSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class SignUp extends AppCompatActivity {
         edtPhone = findViewById(R.id.edt_phoneSignup);
         edtName = findViewById(R.id.edt_nameSignup);
         edtPassword = findViewById(R.id.edt_passwordSignup);
-
+        edtSecureCode = findViewById(R.id.edt_secureCodeSignup);
         btnSignUp = findViewById(R.id.btn_signUp);
 
         //Init Firebase
@@ -46,7 +46,7 @@ public class SignUp extends AppCompatActivity {
                             Toast.makeText(SignUp.this,"Phone number already register!",Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            User user = new User(edtName.getText().toString(),edtPassword.getText().toString());
+                            User user = new User(edtName.getText().toString(),edtPassword.getText().toString(),edtSecureCode.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
                             Toast.makeText(SignUp.this,"Sign up Successfully!",Toast.LENGTH_SHORT).show();
                             finish();

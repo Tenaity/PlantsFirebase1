@@ -13,7 +13,7 @@ import com.midterm.plantsfirebase1.R;
 public class PlantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView tv_NamePlant,tv_PricePlant;
-    public ImageView imagePlant;
+    public ImageView imagePlant,imageFav;
     private ItemClickListener itemClickListener;
 
     public PlantViewHolder(@NonNull View itemView) {
@@ -21,6 +21,7 @@ public class PlantViewHolder extends RecyclerView.ViewHolder implements View.OnC
         tv_NamePlant = itemView.findViewById(R.id.tv_plantName_item);
         tv_PricePlant = itemView.findViewById(R.id.tv_plantPrice_item);
         imagePlant = itemView.findViewById(R.id.iv_plantImage_item);
+        imageFav = itemView.findViewById(R.id.im_fav);
         itemView.setOnClickListener(this);
     }
 

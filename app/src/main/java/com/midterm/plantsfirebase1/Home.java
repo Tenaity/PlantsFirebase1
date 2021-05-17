@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,15 +13,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.midterm.plantsfirebase1.Commom.Commom;
@@ -41,6 +48,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import dmax.dialog.SpotsDialog;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -172,10 +184,75 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             logOutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK  );
             startActivity(logOutIntent);
         }
+        else if(id == R.id.nav_changePWD){
+            showChangePwdDialog();
+        }
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showChangePwdDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Home.this);
+        alertDialog.setTitle("Change Password")
+                .setMessage("Please fill all information");
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View layout_changePwd = inflater.inflate(R.layout.change_password_layout, null);
+
+        MaterialTextView edtPass = (MaterialTextView) layout_changePwd.findViewById(R.id.edt_password_changeLayout);
+        MaterialTextView edtNewPass = (MaterialTextView) layout_changePwd.findViewById(R.id.edt_new_password_changeLayout);
+        MaterialTextView edtRepeatPass = (MaterialTextView) layout_changePwd.findViewById(R.id.edt_repeat_password_changeLayout);
+
+        alertDialog.setView(layout_changePwd);
+
+        alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                android.app.AlertDialog waitingDialog = new SpotsDialog(Home.this);
+                waitingDialog.show();
+
+                if (edtPass.getText().toString().equals(Commom.currentUser.getPassword())){
+                    if (edtNewPass.getText().toString().equals(edtRepeatPass.getText().toString())){
+                        Map<String,Object> passwordUpdate = new HashMap<>();
+                        passwordUpdate.put("password",edtNewPass.getText().toString());
+
+                        DatabaseReference user = FirebaseDatabase.getInstance().getReference("User");
+                        user.child(Commom.currentUser.getPhone())
+                                .updateChildren(passwordUpdate)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        waitingDialog.dismiss();
+                                        Toast.makeText(Home.this,"Password was updated",Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(Home.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }
+                    else{
+                        Toast.makeText(Home.this,"Please check Information again",Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(Home.this,"Please check Information again",Toast.LENGTH_LONG).show();
+                    waitingDialog.dismiss();
+                }
+
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 
     public boolean onOptionItemSelected(MenuItem item){

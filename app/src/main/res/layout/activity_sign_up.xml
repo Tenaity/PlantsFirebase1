@@ -18,7 +18,16 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/edt_phoneSignup"
         app:layout_constraintTop_toBottomOf="@+id/edt_phoneSignup" />
-
+    <EditText
+        android:id="@+id/edt_secureCodeSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="SecureCode"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edt_passwordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/edt_passwordSignup" />
     <EditText
         android:id="@+id/edt_phoneSignup"
         android:layout_width="wrap_content"
@@ -37,15 +46,15 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/btnMain"
         android:hint="Đăng ký"
-        app:layout_constraintStart_toStartOf="@+id/edt_passwordSignup"
-        app:layout_constraintTop_toBottomOf="@+id/edt_passwordSignup" />
+        app:layout_constraintStart_toStartOf="@+id/edt_secureCodeSignup"
+        app:layout_constraintTop_toBottomOf="@+id/edt_secureCodeSignup" />
 
     <EditText
         android:id="@+id/edt_nameSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="300dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
