@@ -165,7 +165,7 @@ public class PlantDetail extends AppCompatActivity implements RatingDialogListen
         Rating rating = new Rating(Commom.currentUser.getPhone(),plantId,String.valueOf(value),comment);
         //id random
         String id = Commom.currentUser.getPhone()+plantId;
-        ratingTbl.child(id).addValueEventListener(new ValueEventListener() {
+        ratingTbl.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.child(id).exists()){
