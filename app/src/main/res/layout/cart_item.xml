@@ -43,12 +43,10 @@
 
         <TextView
             android:id="@+id/tv_cartCountItem"
-            android:layout_gravity="center_vertical|end"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:textColor="@color/white"
-            android:text="1"
-            android:textSize="20sp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:textSize="15sp" />
 
 
     </LinearLayout>

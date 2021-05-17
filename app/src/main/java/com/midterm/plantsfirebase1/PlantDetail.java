@@ -60,6 +60,7 @@ public class PlantDetail extends AppCompatActivity implements RatingDialogListen
         mTvPricePlantDetail = findViewById(R.id.tv_plantPrice_detail);
         mImagePlantDetail = findViewById(R.id.iv_plantImage_detail);
         mBtnBuy = findViewById(R.id.btn_buy);
+        
         mBtnCount = findViewById(R.id.btn_count);
         btn_rating = (FloatingActionButton) findViewById(R.id.btn_rating);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
@@ -80,10 +81,10 @@ public class PlantDetail extends AppCompatActivity implements RatingDialogListen
                 new Database(PlantDetail.this).addToCart(new Order(
                         plantId,
                         currentPlant.getName(),
-                        mBtnCount.getNumber(),
-                        currentPlant.getPrice()
+                        currentPlant.getPrice(),
+                        mBtnCount.getNumber()
                 ));
-                Toast.makeText(PlantDetail.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlantDetail.this, " "+mBtnCount.getNumber(), Toast.LENGTH_SHORT).show();
             }
         });
 
