@@ -53,5 +53,4 @@ public class Database extends SQLiteAssetHelper {
         String query = String.format("DELETE FROM OrderDetail");
         db.execSQL(query);
     }
-
 }

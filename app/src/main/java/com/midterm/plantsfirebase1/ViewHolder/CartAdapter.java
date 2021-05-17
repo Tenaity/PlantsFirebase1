@@ -2,6 +2,7 @@ package com.midterm.plantsfirebase1.ViewHolder;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,8 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-//        TextDrawable drawable = TextDrawable.builder()
-//                .buildRound(""+listData.get(position).getQuantity(), Color.RED);
+
         holder.mTvCartCountItem.setText(listData.get(position).getQuantity());
 
         Locale locale = new Locale("vi","VN");
