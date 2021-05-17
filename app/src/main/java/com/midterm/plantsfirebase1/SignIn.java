@@ -43,7 +43,7 @@ public class  SignIn extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                table_user.addValueEventListener(new ValueEventListener() {
+                table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         //Check if user not exist in database
@@ -58,6 +58,8 @@ public class  SignIn extends AppCompatActivity {
                             Commom.currentUser = user;
                             startActivity(homeIntent);
                             finish();
+
+                            table_user.removeEventListener(this);
                         }
                         else{
                             Toast.makeText(SignIn.this,"Sign In Fail!",Toast.LENGTH_SHORT).show();

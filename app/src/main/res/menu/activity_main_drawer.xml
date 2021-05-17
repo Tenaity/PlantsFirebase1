@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Order" />
         <item
+            android:id="@+id/nav_changePWD"
+            android:icon="@drawable/ic_baseline_change_circle_24"
+            android:title="Change Password" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="LogOut" />
