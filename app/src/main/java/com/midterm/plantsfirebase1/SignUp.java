@@ -43,12 +43,12 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child(edtPhone.getText().toString()).exists()){
-                            Toast.makeText(SignUp.this,"Phone number already register!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this,"Số điện thoại đã dùng!",Toast.LENGTH_SHORT).show();
                         }
                         else{
                             User user = new User(edtName.getText().toString(),edtPassword.getText().toString(),edtSecureCode.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
-                            Toast.makeText(SignUp.this,"Sign up Successfully!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this,"Đăng ký thành công!",Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }

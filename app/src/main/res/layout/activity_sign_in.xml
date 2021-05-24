@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="322dp"
         android:ems="10"
-        android:hint="phone number"
+        android:hint="Số điện thoại"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="Mật khẩu"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/edt_phone_number"
         app:layout_constraintTop_toBottomOf="@+id/edt_phone_number" />

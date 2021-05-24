@@ -11,7 +11,7 @@ import com.midterm.plantsfirebase1.R;
 
 public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView mTvOrderId, mTvOrderStatus, mTvOrderPhone, mTvOrderAddress;
+    public TextView mTvOrderId, mTvOrderStatus, mTvOrderPhone, mTvOrderAddress, mTvOrderPrice;
 
     private ItemClickListener itemClickListener;
 
@@ -22,7 +22,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
         mTvOrderStatus = itemView.findViewById(R.id.tv_orderStatus);
         mTvOrderPhone = itemView.findViewById(R.id.tv_orderPhone);
         mTvOrderAddress = itemView.findViewById(R.id.tv_orderAddress);
-
+        mTvOrderPrice = itemView.findViewById(R.id.tv_orderPrice);
         itemView.setOnClickListener(this);
 
     }

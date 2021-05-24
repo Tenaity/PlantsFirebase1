@@ -48,10 +48,11 @@ public class OrderStatus extends AppCompatActivity {
         mRequestAdapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull OrderViewHolder holder, int position, @NonNull Request model) {
-                holder.mTvOrderId.setText(mRequestAdapter.getRef(position).getKey());
+                //holder.mTvOrderId.setText(mRequestAdapter.getRef(position).getKey());
                 holder.mTvOrderPhone.setText(model.getPhone());
                 holder.mTvOrderAddress.setText(model.getAddress());
                 holder.mTvOrderStatus.setText(convertCodeToStatus(model.getStatus()));
+                holder.mTvOrderPrice.setText(model.getTotal());
             }
 
             @NonNull
@@ -63,8 +64,8 @@ public class OrderStatus extends AppCompatActivity {
         };
         mRvOrder.setAdapter(mRequestAdapter);
 
-        Log.d("DEBUG",""+phoneNum);
-        Log.d("DEBUG",""+mRequestAdapter.getItemCount());
+//        Log.d("DEBUG",""+phoneNum);
+//        Log.d("DEBUG",""+mRequestAdapter.getItemCount());
     }
 
     @Override
@@ -82,13 +83,13 @@ public class OrderStatus extends AppCompatActivity {
     private String convertCodeToStatus(String status) {
         if(status.equals("")) return "0";
         if(status.equals("0")){
-            return "Placed";
+            return "Đã đặt";
         }
         else if(status.equals("1")){
-            return "On my way";
+            return "Đang vận chuyển";
         }
         else{
-            return "Shipped";
+            return "Đã giao hàng";
         }
     }
 }

@@ -18,7 +18,7 @@
         android:layout_height="100dp">
 
         <RelativeLayout
-            android:background="@drawable/gradient_color"
+            android:background="@color/btnMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -31,7 +31,7 @@
 
                 <TextView
                     android:paddingLeft="8dp"
-                    android:text="Total :"
+                    android:text="Tổng :"
                     android:textStyle="bold"
                     android:textSize="25sp"
                     android:textColor="@color/white"
@@ -54,7 +54,7 @@
                     android:backgroundTint="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Order" />
+                    android:text="Đặt hàng" />
 
 
             </LinearLayout>

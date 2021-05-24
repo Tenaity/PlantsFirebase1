@@ -195,8 +195,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     private void showChangePwdDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Home.this);
-        alertDialog.setTitle("Change Password")
-                .setMessage("Please fill all information");
+        alertDialog.setTitle("Đổi mật khẩu")
+                .setMessage("Vui lòng điền đầy đủ thông tin");
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View layout_changePwd = inflater.inflate(R.layout.change_password_layout, null);
@@ -207,7 +207,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         alertDialog.setView(layout_changePwd);
 
-        alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("Thay đổi", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 android.app.AlertDialog waitingDialog = new SpotsDialog(Home.this);
@@ -225,7 +225,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         waitingDialog.dismiss();
-                                        Toast.makeText(Home.this,"Password was updated",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Home.this,"Đổi mật khẩu thành công",Toast.LENGTH_LONG).show();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -236,17 +236,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                                 });
                     }
                     else{
-                        Toast.makeText(Home.this,"Please check Information again",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Home.this,"Kiểm tra lại thông tin",Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(Home.this,"Please check Information again",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Home.this,"Kiểm tra lại thông tin",Toast.LENGTH_LONG).show();
                     waitingDialog.dismiss();
                 }
 
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

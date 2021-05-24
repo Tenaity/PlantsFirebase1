@@ -9,55 +9,57 @@
     tools:deviceIds="wear">
 
     <EditText
-        android:id="@+id/edt_passwordSignup"
+        android:id="@+id/edt_nameSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="256dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Tên"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/edt_phoneSignup"
-        app:layout_constraintTop_toBottomOf="@+id/edt_phoneSignup" />
-    <EditText
-        android:id="@+id/edt_secureCodeSignup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="SecureCode"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/edt_passwordSignup"
-        app:layout_constraintTop_toBottomOf="@+id/edt_passwordSignup" />
-    <EditText
-        android:id="@+id/edt_phoneSignup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Phone number"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/edt_nameSignup"
-        app:layout_constraintTop_toBottomOf="@+id/edt_nameSignup" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_signUp"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@color/btnMain"
         android:hint="Đăng ký"
         app:layout_constraintStart_toStartOf="@+id/edt_secureCodeSignup"
         app:layout_constraintTop_toBottomOf="@+id/edt_secureCodeSignup" />
 
     <EditText
-        android:id="@+id/edt_nameSignup"
+        android:id="@+id/edt_secureCodeSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Mã bảo mật"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/edt_passwordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/edt_passwordSignup" />
+
+    <EditText
+        android:id="@+id/edt_passwordSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Mật khẩu"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edt_phoneSignup"
+        app:layout_constraintTop_toBottomOf="@+id/edt_phoneSignup" />
+
+    <EditText
+        android:id="@+id/edt_phoneSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Số điện thoại"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edt_nameSignup"
+        app:layout_constraintTop_toBottomOf="@+id/edt_nameSignup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

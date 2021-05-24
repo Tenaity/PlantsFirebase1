@@ -84,7 +84,7 @@ public class PlantDetail extends AppCompatActivity implements RatingDialogListen
                         currentPlant.getPrice(),
                         mBtnCount.getNumber()
                 ));
-                Toast.makeText(PlantDetail.this, " "+mBtnCount.getNumber(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlantDetail.this, "Đã mua thành công "+mBtnCount.getNumber()+ " " + currentPlant.getName(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -124,13 +124,13 @@ public class PlantDetail extends AppCompatActivity implements RatingDialogListen
     private void showRatingDialog() {
 //        Toast.makeText(PlantDetail.this,"zo day roi nef",Toast.LENGTH_LONG).show();
         new AppRatingDialog.Builder()
-                .setPositiveButtonText("Submit")
-                .setNegativeButtonText("Cancel")
-                .setNoteDescriptions(Arrays.asList("Very Bad","Not Good","Quite OK","Very Good","Excellent" ))
+                .setPositiveButtonText("Xác nhận")
+                .setNegativeButtonText("Hủy")
+                .setNoteDescriptions(Arrays.asList("Rất tệ","Tệ","Tạm được","Tốt","Xuất sắc" ))
                 .setDefaultRating(1)
-                .setTitle("Rate this plant")
-                .setDescription("Please select some stars and give your feedback")
-                .setHint("Please write your comment here... ")
+                .setTitle("Đánh giá cây cảnh")
+                .setDescription("Hãy chọn đánh giá và điền phản hồi !")
+                .setHint("Viết đánh giá ở đây... ")
                 .setWindowAnimation(R.style.RatingDialogFadeAnim)
                 .create(PlantDetail.this)
                 .show();

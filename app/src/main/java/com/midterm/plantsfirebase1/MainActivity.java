@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void ShowForgotPwdDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Forgot Password");
-        builder.setMessage("Enter your secure code");
+        builder.setTitle("Quên mật khẩu");
+        builder.setMessage("Nhập mã bảo mật");
 
         LayoutInflater inflater = this.getLayoutInflater();
         View Forgot_view = inflater.inflate(R.layout.forgot_password_layout,null);
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         EditText edtPhone = (EditText) Forgot_view.findViewById(R.id.edt_phoneForgot);
         EditText edtCode = (EditText) Forgot_view.findViewById(R.id.edt_secureCodeForgot);
 
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 table_user.addValueEventListener(new ValueEventListener() {
@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
                         User user = snapshot.child(edtPhone.getText().toString()).getValue(User.class);
 
                         if (user.getSecureCode().equals(edtCode.getText().toString()))
-                            Toast.makeText(MainActivity.this, "Your Password is : " + user.getPassword(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Mật khẩu của bạn là : " + user.getPassword(), Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(MainActivity.this, "Wrong secure code ! ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Sai mã bảo mật ! ", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

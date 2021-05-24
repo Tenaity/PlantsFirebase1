@@ -50,18 +50,30 @@
             android:text="Name"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:textAppearance="?attr/textAppearanceHeadline5"
-            />
+            android:textAppearance="?attr/textAppearanceHeadline5"/>
 
-
-        <TextView
-            android:id="@+id/tv_plantPrice_detail"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Price"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_plantPrice_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="16dp"
+                android:text="Price"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary" />
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="4dp"
+                android:textSize="18dp"
+                android:text="Đ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -77,37 +89,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Description"
+            android:text="Thêm mô tả"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?android:attr/textColorSecondary" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Description"
+            android:text="Thêm mô tả"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?android:attr/textColorSecondary" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Description"
+            android:text="Thêm mô tả"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?android:attr/textColorSecondary" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Description"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Description"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary" />
+
     </LinearLayout>
 
 
@@ -134,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/btnMain"
-            android:text="Buy" />
+            android:text="Mua" />
     </LinearLayout>
 
 </LinearLayout>

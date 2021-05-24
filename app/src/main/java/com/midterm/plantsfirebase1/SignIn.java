@@ -53,7 +53,7 @@ public class  SignIn extends AppCompatActivity {
                         User user = snapshot.child(edtPhone.getText().toString()).getValue(User.class);
                         user.setPhone(edtPhone.getText().toString());
                         if(user.getPassword().equals(edtPassword.getText().toString())){
-                            Toast.makeText(SignIn.this,"Sign In Successfully!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignIn.this,"Đăng nhập thành công!",Toast.LENGTH_LONG).show();
                             Intent homeIntent = new Intent(SignIn.this,Home.class);
                             Commom.currentUser = user;
                             startActivity(homeIntent);
@@ -62,7 +62,7 @@ public class  SignIn extends AppCompatActivity {
                             table_user.removeEventListener(this);
                         }
                         else{
-                            Toast.makeText(SignIn.this,"Sign In Fail!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignIn.this,"Đăng nhập thất bại!",Toast.LENGTH_SHORT).show();
                         }
                     }
 
